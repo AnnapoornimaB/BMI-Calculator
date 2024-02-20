@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Harry Potter BMI Calculator</title>
+  <style>
+    body {
+      font-family: 'Times New Roman', Times, serif; /* Serif font family */
+      color: red; /* Red font color */
+      background-image: url('https://wallpapercave.com/wp/wp8585751.jpg'); /* Replace 'harry_potter_background.jpg' with your image file */
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      text-align: center;
+      cursor: url(http://www.rw-designer.com/cursor-view/50509.png), auto; /* Replace 'magic_stick_cursor.png' with your magic stick cursor image */
+    }
+    h1 {
+      color: #fff;
+    }
+    #calculator {
+      max-width: 400px;
+      margin: 50px auto;
+      padding: 20px;
+      background-color: rgba(255, 255, 255, 0.8); /* Add some transparency to the background */
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-sizing: border-box;
+    }
+    button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+    #result {
+      margin-top: 20px;
+      font-weight: bold;
+    }
+
+footer {
+      position: fixed;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      background-color: #333; /* Change the color here */
+      color: #daa520;
+      text-align: center;
+      padding: 10px 0;
+    }
+  </style>
+</head>
+<body>
+  <h1>Harry Potter BMI Calculator</h1><br><br><br><br>
+  <div id="calculator">
+    <input type="text" id="weight" placeholder="Enter your weight in kilograms">
+    <input type="text" id="height" placeholder="Enter your height in meters">
+    <button onclick="calculateBMI()">Calculate BMI</button>
+    <button onclick="resetValues()">Reset</button>
+    <div id="result"></div>
+  </div>
+
+ <footer>
+    &copy; 2024 Anns's BMI Calculator
+  </footer>
+
+
+
+  <script>
+    function calculateBMI() {
+      var weight = parseFloat(document.getElementById('weight').value);
+      var height = parseFloat(document.getElementById('height').value);
+      
+      if (isNaN(weight) || isNaN(height) || weight <= 0 || height <= 0) {
+        document.getElementById('result').innerHTML = 'Please enter valid weight and height';
+        return;
+      }
+      
+      var bmi = weight / (height * height);
+      var interpretation = getInterpretation(bmi);
+      
+      document.getElementById('result').innerHTML = `Your BMI is ${bmi.toFixed(2)}. ${interpretation}`;
+    }
+    
+    function getInterpretation(bmi) {
+      if (bmi < 18.5) {
+        return 'You are underweight, maybe you need some Butterbeer!';
+      } else if (bmi >= 18.5 && bmi < 24.9) {
+        return 'You have a healthy weight, keep it up!';
+      } else if (bmi >= 25 && bmi < 29.9) {
+        return 'You are overweight, perhaps you\'ve been indulging in too many Pumpkin Pasties!';
+      } else {
+        return 'You are obese, consider consulting Madam Pomfrey!';
+      }
+    }
+
+    function resetValues() {
+      document.getElementById('weight').value = '';
+      document.getElementById('height').value = '';
+      document.getElementById('result').innerHTML = '';
+    }
+  </script>
+</body>
+</html>
